@@ -6,7 +6,7 @@
 /*   By: nmaquet <nmaquet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 12:54:58 by nmaquet           #+#    #+#             */
-/*   Updated: 2023/05/04 10:01:09 by nmaquet          ###   ########.fr       */
+/*   Updated: 2023/05/04 15:38:55 by nmaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,26 @@ int	ft_printf(const char *str, ...)
 {
 	int		i;
 	int		j;
+	int		k;
 	va_list	args;
 
 	i = 0;
 	j = 0;
+	k = 0;
 	va_start(args, str);
 	while (str[i])
 	{
 		if (str[i] == '%')
 		{
+			k = i;
 			j += check_format(args, str[i + 1]);
+			if (i < k)
+				return(-1);
 			i++;
 		}
 		else
 			j += ft_print_char(str[i]);
-			i++;
+		i++;
 	}
 	va_end(args);
 	return (j);

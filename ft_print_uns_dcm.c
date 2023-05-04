@@ -6,7 +6,7 @@
 /*   By: nmaquet <nmaquet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:32:45 by nmaquet           #+#    #+#             */
-/*   Updated: 2023/05/03 18:34:30 by nmaquet          ###   ########.fr       */
+/*   Updated: 2023/05/04 15:40:55 by nmaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*ft_uitoa(unsigned int n)
 	len = ft_uilen(n);
 	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (!str)
-		return (0);
+		return (NULL);
 	str[len] = '\0';
 	while (n != 0)
 	{
@@ -55,6 +55,8 @@ int	ft_print_uns_dcm(unsigned int n)
 	else
 	{
 		str = ft_uitoa(n);
+		if (!str)
+			return (-1);
 		print_length += ft_print_str(str);
 		free(str);
 	}
